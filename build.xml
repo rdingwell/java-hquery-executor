@@ -1,0 +1,56 @@
+<project default="jar">
+
+    <!-- set global properties for this build -->
+    <property name="src" location="src" />
+    <property name="build" location="build" />
+    <property name="dist" location="dist" />
+    <property name="name" value="jqg"/>
+
+    <target name="init">
+        <!-- Create the time stamp -->
+        <tstamp />
+        <!-- Create the build directory structure used by compile -->
+        <mkdir dir="${build}" />
+    </target>
+
+
+    <!-- ================================= 
+          target: jar              
+         ================================= -->
+    <target name="jar" depends="test" description="jars the compiled classes">
+        <jar destfile="${build}/${name}.jar" basedir="${build}/classes"></jar>
+    </target>
+
+    <!-- ================================= 
+          target: test              
+         ================================= -->
+    <target name="test" depends="compile" description="Runs junit tests">
+
+    </target>
+
+
+    <!-- ================================= 
+          target: compile              
+         ================================= -->
+    <target name="compile" depends="clean,init" description="Compiles classes">
+        <mkdir dir="${build}/classes" />
+        <javac destdir="${build}/classes" srcdir="${src}">
+            <classpath>
+                        <fileset dir="lib">
+                            <include name="**/*.jar" />
+                        </fileset>
+                    </classpath>
+        </javac>
+        
+
+    </target>
+
+
+    <!-- ================================= 
+          target: clean              
+         ================================= -->
+    <target name="clean" description="cleans up the mess">
+        <deltree dir="${build}" />
+    </target>
+
+</project>
