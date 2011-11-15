@@ -20,7 +20,7 @@ java_import "org.projecthquery.gateway.PatientJSBuilder"
 papi = PatientJSBuilder.getPatientAPI(gem_root+"/app/assets/javascripts/")
 
 
-puts papi
+puts "patient api loaded"
 
 mrb = MapReduceBuilder.new(papi, "org.projecthquery.gateway.mongo.MongoValueIterator", ["localhost","27017","query_gateway_development", "records"].to_java(:string), "org.projecthquery.gateway.InMemoryHashEmitter", [].to_java(:string))
 map_js =
@@ -37,7 +37,7 @@ reduce_js =
   return sum;
 };'
 mr = MapReduce.new(mrb, map_js, reduce_js, '', 'X')
-
+puts "starting map reduce"
 result = mr.run
 keys = result.keySet.iterator
 while keys.hasNext
