@@ -1,9 +1,9 @@
 <project default="jar">
 
     <!-- set global properties for this build -->
-    <property name="src" location="src" />
+    <property name="src" location="ext/java" />
     <property name="build" location="build" />
-    <property name="dist" location="dist" />
+    <property name="dist" location="lib" />
     <property name="name" value="jqg"/>
 
     <target name="init">
@@ -53,4 +53,7 @@
         <deltree dir="${build}" />
     </target>
 
+    
+    
+    <target name="gem"></target>
 </project>
