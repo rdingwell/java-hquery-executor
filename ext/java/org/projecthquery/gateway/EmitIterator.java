@@ -1,5 +1,7 @@
 package org.projecthquery.gateway;
 
+import java.util.Iterator;
+
 /**
  * This interface encapsulates the generic methods needed to temporarily associate a set of
  * keys each with a set of values.  It is used in the following way:
@@ -29,7 +31,7 @@ public interface EmitIterator extends Iterable<Object> {
 	 * @param key A key stored using emit().
 	 * @return All of the associated values.
 	 */
-	public Object[] get(Object key);
+	public Iterator get(Object key);
 	/**
 	 * This method is invoked when processing is complete;
 	 * implementing classes should use this to delete any temporary storage.

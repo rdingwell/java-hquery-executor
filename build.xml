@@ -34,7 +34,7 @@
          ================================= -->
     <target name="compile" depends="clean,init" description="Compiles classes">
         <mkdir dir="${build}/classes" />
-        <javac destdir="${build}/classes" srcdir="${src}">
+        <javac destdir="${build}/classes" debug="true" srcdir="${src}">
             <classpath>
                         <fileset dir="lib">
                             <include name="**/*.jar" />

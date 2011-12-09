@@ -34,9 +34,9 @@ public class InMemoryHashEmitter implements EmitIterator {
     }
 
     @Override
-    public Object[] get(Object key) {
-        Object[] array = new Object[0];
-        return find(key).toArray(array);
+    public Iterator get(Object key) {
+
+        return find(key).iterator();
     }
 
     @Override

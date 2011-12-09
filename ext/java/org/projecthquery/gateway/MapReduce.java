@@ -61,27 +61,29 @@ public class MapReduce {
 		// Finally, add $reduce as a function (called from Java); eval converts an array string into an actual array.
 		String helper_js = "\n"
 			+ "function emit(k,v){$emit.emit(k,v);}\n"
-			+ "function $map(patient){map(new hQuery.Patient(eval(\"(\" + patient + \")\")));}\n"
-			+ "function $reduce(key,values){return reduce(key, eval(\"(\" + values + \")\"));}\n";
+			+ "function $map(patient){map(new hQuery.Patient(JSON.parse(patient)));}\n"
+			+ "function $reduce(key,values){return reduce(key, values);}\n";
 		
 		context.evaluateString(scope, builder.api, "patient_api.js", 1, null);
 		context.evaluateString(scope,  helper_js , "helper.js", 1, null);
 		context.evaluateString(scope,  functions_js, "functions.js", 1, null);
 		context.evaluateString(scope,  map_js , "map.js", 1, null);
 		context.evaluateString(scope, reduce_js, "reduce.js", 1, null);
-
+        context.getWrapFactory().setJavaPrimitiveWrap(false);
 	    // Invoke $map once for each value returned by the value iterator.
 	    Function mapFn = (Function) scope.get("$map", scope);
 		for (String value : valueItr) {
-			Object[] args = { value };
-			mapFn.call(context, scope, scope, args);
+			//Object[] args = { value };
+			//mapFn.call(context, scope, scope, args);
+		    scope.put("__p", scope, value);
+		    context.evaluateString(scope, "$map(__p)" , "map_call" , 1, null);
 		}
 
 		// Invoke $reduce once for each key after converting the associated values into an array string.
 		Function reduceFn = (Function) scope.get("$reduce", scope);
 		for (Object key : emitItr) {
 			// TODO: This approach flattens the objects into strings; is this always safe? 
-			String[] args = { key.toString(), Arrays.toString(emitItr.get(key)) };
+			Object[] args = { key.toString(), emitItr.get(key) };
 			Object reducedValue = reduceFn.call(context, scope, scope, args);
 			result.put(key, reducedValue);
 		}
