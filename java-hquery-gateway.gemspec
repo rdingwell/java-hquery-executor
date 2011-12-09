@@ -8,7 +8,7 @@ Gem::Specification::new do |spec|
   spec.summary = "java_query_executor"
   spec.description = "description: it's java"
 
-  spec.files = Dir['{lib,ext}/**/*'] + Dir['{java_query_executor.rb,*.gemspec,Rakefile}']
+  spec.files = Dir['{lib,ext}/**/*'] + Dir['{*.gemspec,Rakefile}']
 
   spec.executables = []
   

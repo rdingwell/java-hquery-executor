@@ -1,9 +1,9 @@
 require 'query_utilities'
 
 require 'java'
-require 'lib/commons-io-2.1.jar'
-require 'lib/jcoffeescript-1.1.jar'
-#require 'lib/js.jar'
+require 'jars/commons-io-2.1.jar'
+require 'jars/jcoffeescript-1.1.jar'
+#require 'jars/rhino-1.7R3.jar.jar'
 require 'jars/jqg.jar'
 require 'jars/mongo-2.7.2.jar'
 
