@@ -1,11 +1,11 @@
-## java-hquery-gateway.gemspec
+## java-query-gateway.gemspec
 #
 
 Gem::Specification::new do |spec|
-  spec.name = "java_query_executor"
+  spec.name = "java-query-gateway"
   spec.version = "0.1"
   spec.platform = 'java'
-  spec.summary = "java_query_executor"
+  spec.summary = "java-query-gateway"
   spec.description = "description: it's java"
 
   spec.files = Dir['{lib,ext}/**/*'] + Dir['{*.gemspec,Rakefile}']
