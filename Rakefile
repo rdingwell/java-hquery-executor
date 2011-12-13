@@ -5,7 +5,7 @@ directory "pkg/classes"
 desc "Clean up build artifacts"
 task :clean do
   rm_rf "pkg/classes"
-  rm_rf "lib/jqg.jar"
+  rm_rf "lib/jars/jqg.jar"
 end
 
 desc "Compile the extension"
@@ -17,7 +17,7 @@ end
 
 desc "Build the jar"
 task :jar => :compile do
-  ant.jar :basedir => "pkg/classes", :destfile => "lib/jqg.jar", :includes => "**/*.class"
+  ant.jar :basedir => "pkg/classes", :destfile => "lib/jars/jqg.jar", :includes => "**/*.class"
 end
  
 task :package => :jar
